@@ -7,7 +7,7 @@ const initialState: Auth = {
 }
 
 export const authReducer = (state = initialState, action: any) => {
-    switch (action.payload) {
+    switch (action.type) {
         case authEnum.AUTH:
             return {...state, isAuth: action.payload};
         case authEnum.SET_USER:

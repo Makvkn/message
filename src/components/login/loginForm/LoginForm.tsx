@@ -5,17 +5,19 @@ import {AuthActionCreators} from "../../../redux/reducers/auth/authActionCreator
 import axios from "axios";
 import {IUser} from "../../../redux/reducers/auth/types";
 import React, {useState} from "react";
+import {useNavigate} from "react-router-dom";
 
 const LoginForm = () => {
 
     const dispatch = useDispatch()
 //useSelectors
-    const useIsAuth = useSelector((state: RootState) => state.authReducer.isAuth)
     const useUser = useSelector((state: RootState) => state.authReducer.user)
     const useIsError = useSelector((state: RootState) => state.authReducer.error)
 //useState
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+    let navigate = useNavigate();
+
     const onFinish = async (values: any) => {
         try {
             const response = await axios.get("./users.json")
@@ -24,10 +26,13 @@ const LoginForm = () => {
             if (mockUser) {
                 dispatch(AuthActionCreators.setAuth(true))
                 dispatch(AuthActionCreators.setUser(mockUser))
+
+                navigate("/direct");
+
             } else {
                 dispatch(AuthActionCreators.setIsError('Username or password is not correct'))
+                console.log(useIsError)
             }
-            // console.log(store.)
         } catch (e) {
             console.log('error', (e))
         }
@@ -36,8 +41,6 @@ const LoginForm = () => {
 
     const onFinishFailed = (errorInfo: any) => {
         console.log('Failed:', errorInfo);
-
-
     };
 
     return (

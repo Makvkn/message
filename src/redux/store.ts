@@ -1,4 +1,4 @@
-import {applyMiddleware, combineReducers, legacy_createStore} from "redux";
+import { combineReducers, legacy_createStore} from "redux";
 import {authReducer} from "./reducers/auth/authReducer";
 import {composeWithDevTools} from "redux-devtools-extension";
 
