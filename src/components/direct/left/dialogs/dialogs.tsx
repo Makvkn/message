@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Direct = () => {
+const Dialogs = () => {
     return (
         <div>
-            Direct
+            
         </div>
     );
 };
 
-export default Direct;
+export default Dialogs;
