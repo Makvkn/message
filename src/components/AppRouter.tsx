@@ -10,7 +10,7 @@ const AppRouter = () => {
     const isAuth = useSelector((state: RootState) => state.authReducer.isAuth)
     console.log(isAuth)
     return (
-        <div>
+        <div style={{height: "100%"}}>
             {!isAuth ?
                 <Routes>
                     <Route path="/" element={<Direct/>} index/>
