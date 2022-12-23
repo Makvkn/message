@@ -1,0 +1,128 @@
+.middleColumn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.middleHeader {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    box-shadow: 0 2px 2px rgba(0,0,0,0.25098);
+    background: rgb(33,33,33);
+    position: relative;
+    z-index: 11;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: max(1.5rem,env(safe-area-inset-left));
+    padding-right: max(0.8125rem,env(safe-area-inset-right));
+    height: 45px;
+}
+
+.chat {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.messagesList {
+    flex: 1;
+    width: 100%;
+    overflow: scroll;
+    overflow-x: hidden;
+    overflow-y: auto;
+    min-height: 100%;
+    margin: 0 auto;
+    display: flex;
+    /*justify-content: flex-end;*/
+    flex-direction: column;
+    padding: 1rem 1rem 0 1.125rem;
+}
+
+.ownMessContainer {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: flex-end;
+    margin-bottom: 0.375rem;
+    position: relative;
+}
+
+.ownMess {
+    opacity: 1;
+    transform: scale(1) translateX(0);
+    padding: 0.3125rem 0.5rem 0.375rem;
+    background-color: rgb(135,117,218);
+    border-radius: 10px;
+}
+
+.anotherMessContainer {
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 0.375rem;
+    position: relative;
+}
+
+.anotherMess {
+    opacity: 1;
+    transform: scale(1) translateX(0);
+    padding: 0.3125rem 0.5rem 0.375rem;
+    background-color: rgb(33,33,33);
+    border-radius: 0.75rem;
+}
+
+.footerContainer {
+    width: 100%;
+    top: 0;
+    padding: 0 1rem;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    transform: translate3d(0, 0, 0);
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.footer {
+    flex-grow: 1;
+    display: flex;
+    max-width: calc(100% - 4rem);
+    background: rgb(33,33,33);
+    border-radius: 0.75rem;
+    border-bottom-right-radius: 0;
+    box-shadow: 0 1px 2px rgb(33,33,33);
+    position: relative;
+    z-index: 1;
+}
+
+.footer input {
+    width: 160px;
+    height: 40px;
+    border-radius: 0.75rem;
+    background: rgb(33,33,33);
+    flex-grow: 1;
+    max-width: calc(100% - 4rem);
+    border-radius: 0.75rem 0rem 0.75rem 0.75rem;
+    border-bottom-right-radius: 0;
+    position: relative;
+    z-index: 1;
+    border: none;
+    border-right: 1px solid gray;
+}
+
+.footer input::placeholder {
+    padding-left: 10px;
+}
+
+.footer button {
+    background: rgb(33,33,33);
+    color: rgb(135,117,218);
+    border: none;
+}

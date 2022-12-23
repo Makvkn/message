@@ -1,22 +1,13 @@
 import React from 'react';
-import {Layout} from 'antd';
-import Chat from "../../components/direct/middle/chat/Chat";
-import Author from "../../components/direct/middle/chat/author";
-import NewMessage from "../../components/direct/middle/newMessage/NewMessage";
-import Dialogs from "../../components/direct/left/dialogs/dialogs";
-import {inspect} from "util";
 import styles from "./Direct.module.css"
+import Left from "../../components/direct/left/left";
+import Middle from "../../components/direct/middle/Middle";
 
-const Direct: React.FC = () => {
+const Direct = () => {
     return (
         <div className={styles.direct}>
-                <Dialogs />
-            <div >
-                <Author />
-                <Chat/>
-
-                {/*<NewMessage />*/}
-            </div>
+            <Left/>
+            <Middle/>
         </div>
     )
 };
