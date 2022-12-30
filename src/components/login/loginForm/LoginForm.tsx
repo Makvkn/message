@@ -19,23 +19,7 @@ const LoginForm = () => {
     let navigate = useNavigate();
 
     const onFinish = async (values: any) => {
-        try {
-            const response = await axios.get("./users.json")
 
-            let mockUser = response.data.find((user: IUser) => user.username === username && user.password === password)
-            if (mockUser) {
-                dispatch(AuthActionCreators.setAuth(true))
-                dispatch(AuthActionCreators.setUser(mockUser))
-
-                navigate("/direct");
-
-            } else {
-                dispatch(AuthActionCreators.setIsError('Username or password is not correct'))
-                console.log(useIsError)
-            }
-        } catch (e) {
-            console.log('error', (e))
-        }
 
     };
 

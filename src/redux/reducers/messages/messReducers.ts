@@ -6,11 +6,10 @@ const initialState: Auth = {
     error: ''
 }
 
-export const authReducer = (state = initialState, action: any) => {
+export const messReducers = (state = initialState, action: any) => {
     switch (action.type) {
         case authEnum.AUTH:
             return {...state, isAuth: action.payload};
-
         case authEnum.SET_USER:
             return {...state, user: action.payload}
         case authEnum.ERROR:

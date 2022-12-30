@@ -11,9 +11,9 @@ const AppRouter = () => {
     console.log(isAuth)
     return (
         <div style={{height: "100%"}}>
-            {!isAuth ?
+            {isAuth ?
                 <Routes>
-                    <Route path="/" element={<Direct/>} index/>
+                    <Route path="/direct" element={<Direct/>} />
                 </Routes> :
                 <Routes>
                     <Route  element={<Login/>} path="/" />
