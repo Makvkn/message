@@ -3,10 +3,12 @@ import {useDispatch, useSelector} from "react-redux";
 import store, {RootState} from "../../../redux/store";
 import React, {useState} from "react";
 import {useNavigate} from "react-router-dom";
+import { doc, setDoc } from "firebase/firestore";
+import { getFirestore } from "firebase/firestore"
+import {initializeApp} from "firebase/app";
 import {auth} from "./../../../firebase"
 
-import {signInWithEmailAndPassword} from "firebase/auth";
-
+import {createUserWithEmailAndPassword, signInWithEmailAndPassword} from "firebase/auth";
 const LoginForm = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -18,6 +20,8 @@ const LoginForm = () => {
     const [password, setPassword] = useState('')
 
 
+
+
     const [username, setUsername] = useState('')
     const onFinish = async (values: any) => {
         console.log(values)
@@ -25,8 +29,10 @@ const LoginForm = () => {
             // navigate("/direct")
             const email = values.email
             const password = values.password
-            const res = await signInWithEmailAndPassword(auth, email, password)
-            signInWithEmailAndPassword(auth, email, password)
+            const res = await createUserWithEmailAndPassword(auth, email, password)
+            const db = getFirestore()
+            createUserWithEmailAndPassword(auth, email, password)
+
                 .then((userCredential) => {
                     // Signed in
                     const user = userCredential.user;
@@ -36,12 +42,23 @@ const LoginForm = () => {
                 .catch((error) => {
                     const errorCode = error.code;
                     const errorMessage = error.message;
-                    console.log(errorCode, errorMessage)
+                    console.log(errorMessage)
+                    // ..
                 });
+             setDoc(doc(db, "messenger", res.user.uid), {
+                uid: res.user.uid,
+                username: values.username,
+                email: res.user.email,
+                password: values.password
+            });
         } catch (e) {
             console.log("Error", (e))
             setErr(true)
         }
+
+
+        // loginAcc(auth, email, password)
+
     }
 
     const onFinishFailed = (errorInfo: any) => {
@@ -64,6 +81,23 @@ const LoginForm = () => {
             onFinishFailed={onFinishFailed}
             autoComplete="off"
         >
+            <Form.Item
+                label="Username"
+                name="username"
+                rules={[
+                    {
+                        required: true,
+                        message: 'Please input your username!',
+                    },
+                ]}
+            >
+                <Input value={username}
+                       onChange={(e) => {
+                           setUsername(e.target.value)
+                       }}
+                />
+            </Form.Item>
+
             <Form.Item
                 label="Email"
                 name="email"
@@ -94,6 +128,10 @@ const LoginForm = () => {
                                 }}
                 />
             </Form.Item>
+            {/*<div style={{marginTop: '25px',marginLeft: '100px', marginBottom: '25px'}}>*/}
+            {/*    <img style={{width: '30px'}} src="/avatar_def.svg" alt=""/>*/}
+            {/*    <span style={{marginTop: '10px', marginLeft:"10px"}}>Add an Avatar</span>*/}
+            {/*</div>*/}
             <Form.Item
                 name="remember"
                 valuePropName="checked"

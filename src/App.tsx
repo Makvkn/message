@@ -1,8 +1,10 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import './App.css';
 import AppRouter from "./components/AppRouter";
 
+
 function App() {
+
   return (
     <div className="App">
       <AppRouter />
